@@ -1,5 +1,9 @@
 version: 0.2
 
+env:
+  variables:
+    BUILD_NUMBER: "0.1"
+
 phases:
   install:
     commands:
@@ -15,5 +19,13 @@ phases:
     commands:
     - echo Build completed on `date`
 artifacts:
+  discard-paths: true
   files:
-  - target/scala-2.11/simple-project_2.11-1.0.jar
+  - simple-project_2.11-1.0.jar
+  name: data-processor-BUILD_NUMBER.jar
+
+cache:
+  paths:
+  - '/root/.ivy2/**/*'
+  - '/root/.sbt/**/*'
+
