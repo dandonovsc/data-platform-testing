@@ -15,6 +15,6 @@ phases:
 artifacts:
   files:
   - app.zip
-  name: data-processor-BUILD_NUMBER.zip
+  name: data-processor-$BUILD_NUMBER.zip
 
 
