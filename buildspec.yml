@@ -5,7 +5,6 @@ env:
     BUILD_NUMBER: "0.1"
 
 phases:
-    - echo Nothing to do in the pre_build phase...
   build:
     commands:
     - echo Build started on `date`
