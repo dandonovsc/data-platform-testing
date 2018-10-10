@@ -14,18 +14,15 @@ phases:
   build:
     commands:
     - echo Build started on `date`
-    - sbt package
+#    - sbt package
+    - zip -r app app
   post_build:
     commands:
     - echo Build completed on `date`
 artifacts:
   discard-paths: true
   files:
-  - simple-project_2.11-1.0.jar
-  name: data-processor-BUILD_NUMBER.jar
+  - app.zip
+  name: data-processor-BUILD_NUMBER.zip
 
-cache:
-  paths:
-  - '/root/.ivy2/**/*'
-  - '/root/.sbt/**/*'
 
