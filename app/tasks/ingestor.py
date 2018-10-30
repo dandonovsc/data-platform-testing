@@ -1,10 +1,5 @@
-import csv
-import json
-import logging
-import app.tests.utilities.transformers as transformers
-
-from tests.utilities.dataframes import init_schema
-import config
+import app.utilities.transformers as transformers
+from app.utilities.dataframes import init_schema
 
 
 class DataIngestor:
@@ -14,15 +9,16 @@ class DataIngestor:
         self.config = config
         self.logger = spark._jvm.org.apache.log4j.LogManager.getLogger("DP DataIngestor")
 
-    def process(self, area, collection=None):
+    def process(self, area, collection):
         self.logger.info(f"Starting ingest of area: {area}")
         raw_areas_input = self._read_raw_areas_data(area, collection)
         transformed_df = self._transform_raw_areas(raw_areas_input)
+        self.persist_temp_data(transformed_df)
 
     def _read_raw_areas_data(self, area, collection):
         areas = []
         if area == "all":
-            for a in config.FUNCTIONAL_AREAS:
+            for a in self.config.FUNCTIONAL_AREAS:
                 areas.append(self._process_raw_area(a, collection))
         else:
             areas.append(self._process_raw_area(area, collection))
@@ -33,7 +29,7 @@ class DataIngestor:
 
         collections = []
         if collection == "all":
-            for collection in config.FUNCTIONAL_AREAS[area]:
+            for collection in self.config.FUNCTIONAL_AREAS[area]:
                 collections.append(self._process_raw_collection(area, collection))
         else:
             collections.append(self._process_raw_collection(area, collection))
@@ -55,7 +51,7 @@ class DataIngestor:
         self.logger.info(f"Cached staging data. Area {area}, collection {collection}, count {raw_df.count()}")
 
         return {
-            "collection": collection,
+            "name": collection,
             "df": raw_df
         }
 
@@ -72,12 +68,23 @@ class DataIngestor:
 
     def _transform_raw_collections(self, area_name, collections):
         for collection in collections:
-            rules_set_location = f"{self.config.DICTIONARY_BUCKET}/{area_name}/{collection}-mappings.json"
+            rules_set_location = f"{self.config.DICTIONARY_BUCKET}/{area_name}/{collection['name']}-mappings.json"
             self.logger.info(f"Reading rule set data: {rules_set_location}")
-
             with open(rules_set_location, newline='') as rules_file:
-                rule_set = csv.reader(rules_file, delimiter='=>')
-                for line in rule_set:
-                    operation = line[0]
-                    column_pair = line[1].split("|")
-                    transformer = getattr(transformers, operation)(column_pair[0], column_pair[1])
+                for line in rules_file:
+                    rule_pair = line.split("=>")
+                    operation = rule_pair[0]
+                    args = rule_pair[1].split("|")
+                    collection['df'] = getattr(transformers, operation)(collection['df'], args)
+
+        return collections
+
+    def persist_temp_data(self, transformed_df):
+        self.logger.info("Started persisting temp data...")
+        for df_data in transformed_df:
+            for collection in df_data['collections']:
+                collection_name = collection['name']
+                data_frame = collection['df']
+                self.logger.info(f"Persisting temp table {collection_name}")
+                self.spark.catalog.dropGlobalTempView(collection_name)
+                data_frame.createGlobalTempView(collection_name)

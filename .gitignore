@@ -1,3 +1,10 @@
 # Created by .ignore support plugin (hsz.mobi)
 .idea/
 DataPlatformProcessor.iml
+app/__pycache__/
+app/utilities/__pycache__/
+app/tasks/__pycache__
+app/tests/utilities/__pycache__
+app/tasks/__pycache__/*
+*/*.pyc
+*/*/*.pyc

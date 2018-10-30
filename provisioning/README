@@ -1,0 +1,1 @@
+ aws  --profile aws-tester codebuild create-project --cli-input-json file://code-build-def.json

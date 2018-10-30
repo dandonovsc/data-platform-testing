@@ -1,0 +1,14 @@
+col_rename=>secureId|secure_id
+col_rename=>userId|user_id
+col_rename=>createDate|create_date
+col_rename=>updateDate|update_date
+col_rename=>observationDate|observation_date
+col_rename=>codeSystemName|code_system_name
+col_rename=>distinctKey|distinct_key
+col_rename=>secureDistinctKey|secure_distinct_key
+col_rename=>refRange|ref_range
+col_rename=>refLow|ref_low
+col_rename=>refHigh|ref_high
+col_drop=>_id
+col_restructure=>codes|array<struct<name:string,code:string,code_system:string,code_system_name:string>>
+col_restructure=>source|struct<name:string, type:string, notes:string, meta:struct<data_quality:string, persistent_record_id:string,resource_key:string,sending_system:string,batch_id:string>>

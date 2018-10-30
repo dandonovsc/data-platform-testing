@@ -1,0 +1,38 @@
+{
+  "name": "data-platform-processor-builder",
+  "description": "Data Platform Processor builder",
+  "source": {
+    "type": "GITHUB",
+    "location": "https://github.com/dandonovsc/spark-testing.git",
+    "gitCloneDepth": 1,
+    "buildspec": "",
+    "auth": {
+      "type": "OAUTH"
+    },
+    "reportBuildStatus": false,
+    "insecureSsl": false
+  },
+  "artifacts": {
+    "type":"S3",
+    "location": "arn:aws:s3:::data-test-builds",
+    "overrideArtifactName": true,
+    "encryptionDisabled": false
+  },
+  "environment": {
+    "type": "LINUX_CONTAINER",
+    "image": "aws/codebuild/ubuntu-base:14.04",
+    "computeType": "BUILD_GENERAL1_SMALL",
+    "environmentVariables": [],
+    "privilegedMode": false
+  },
+  "serviceRole": "arn:aws:iam::576892269829:role/service-role/codebuild-data-test-service-role",
+  "logsConfig": {
+    "cloudWatchLogs": {
+      "status": "ENABLED"
+    },
+    "s3Logs": {
+      "status": "ENABLED",
+      "location": ""
+    }
+  }
+}

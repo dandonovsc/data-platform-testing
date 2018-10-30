@@ -4,9 +4,9 @@ import argparse
 
 from pyspark.sql import SparkSession
 
-# import app.config as config
-from tasks.exporter import DataExporter
-from tasks.ingestor import DataIngestor
+import app.config as config
+from app.tasks.exporter import DataExporter
+from app.tasks.ingestor import DataIngestor
 
 if __name__ == "__main__":
 
