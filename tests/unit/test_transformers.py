@@ -3,7 +3,7 @@ import unittest
 from pyspark import Row
 
 from tests import config
-import utilities.transformers as transformers
+import app.utilities.transformers as transformers
 
 
 class TransformersTest(unittest.TestCase):
