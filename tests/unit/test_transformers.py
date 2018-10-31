@@ -21,7 +21,7 @@ class TransformersTest(unittest.TestCase):
         test_data = Row(_id = "123", topic = "test")
         test_df = self.spark.createDataFrame([test_data])
 
-        test_df = transformers.col_drop(test_df, "_id")
+        test_df = transformers.col_drop(test_df, ["_id"])
         self.assertNotIn("_id", test_df.columns)
 
     def test_should_rename_column(self):
