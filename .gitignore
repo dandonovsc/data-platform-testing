@@ -8,3 +8,10 @@ app/tests/utilities/__pycache__
 app/tasks/__pycache__/*
 */*.pyc
 */*/*.pyc
+__pycache__/
+regression/__pycache__/
+regression/ingest/__pycache__/test_successful.cpython-37.pyc
+regression/ingest/derby.log
+unit/__pycache__/
+unit/derby.log
+derby.log

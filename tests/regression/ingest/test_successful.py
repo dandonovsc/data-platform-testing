@@ -17,8 +17,8 @@ class IngestSuccessfulTest(unittest.TestCase):
     def test_process_biometrics(self):
         self.ingestor.process(area="healthprofile", collection="biometrics")
         tmp_view = self.spark.newSession().sql("SELECT * FROM global_temp.biometrics")
-        print(tmp_view.count())
-        print("\n\n\n\n\n")
+        print(f"\n\n\n\ >>> {tmp_view.count()}")
+        # TODO Add assertions here
 
     @classmethod
     def tearDownClass(cls):
