@@ -24,6 +24,6 @@ phases:
 artifacts:
   files:
   - app.zip
-  name: data-processor-$BUILD_NUMBER
+  name: data-processor-$BUILD_NUMBER-$CODEBUILD_RESOLVED_SOURCE_VERSION
 
 
