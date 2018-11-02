@@ -8,6 +8,7 @@ phases:
   install:
     commands:
     - pip install -r requirements.txt
+    - sudo apt-get install zip
   build:
     commands:
     - echo Build started on `date`
