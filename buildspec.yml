@@ -10,6 +10,10 @@ phases:
     - pip install -r requirements.txt
     - sudo apt-get update
     - sudo apt-get install zip unzip -qy
+  pre_build:
+    commands:
+    - ./run-tests.py -d tests/unit
+    - ./run-tests.py -d tests/regression
   build:
     commands:
     - echo Build started on `date`
