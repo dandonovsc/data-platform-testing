@@ -10,8 +10,6 @@ phases:
     - pip install -r requirements.txt
     - apt-get update
     - apt-get install zip unzip -qy
-    - echo $JAVA_HOME
-    - java -version
   pre_build:
     commands:
     - ./run-tests.py -d tests/unit
