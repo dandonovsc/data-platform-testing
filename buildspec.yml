@@ -11,9 +11,10 @@ phases:
     - sudo apt-get update
     - sudo apt install openjdk-8-jdk -qy
     - sudo update-alternatives --config java
+    - which java
+    - java -version
     - export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64/jre"
     - echo $JAVA_HOME
-    - export PYSPARK_SUBMIT_ARGS="--master local[2] pyspark-shell"
     - sudo apt-get install zip unzip -qy
   pre_build:
     commands:
