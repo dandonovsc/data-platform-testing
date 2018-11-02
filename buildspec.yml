@@ -11,7 +11,9 @@ phases:
     - sudo apt-get update
     - sudo apt-get install default-jdk -qy
     - sudo update-alternatives --config java
-    - export JAVA_HOME="/usr/lib/jvm/java-7-openjdk-amd64"
+    - export JAVA_HOME="/usr/lib/jvm/java-7-openjdk-amd64/jre"
+    - echo $JAVA_HOME
+    - export PYSPARK_SUBMIT_ARGS="--master local[2] pyspark-shell"
     - sudo apt-get install zip unzip -qy
   pre_build:
     commands:
