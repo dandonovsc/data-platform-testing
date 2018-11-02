@@ -5,9 +5,6 @@ env:
     BUILD_NUMBER: "0.1"
 
 phases:
-  pre-build:
-    - ./run-tests -d tests/unit
-    - ./run-tests -d tests/regression
   build:
     commands:
     - echo Build started on `date`
