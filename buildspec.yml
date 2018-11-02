@@ -8,7 +8,7 @@ phases:
   install:
     commands:
     - pip install -r requirements.txt
-    - sudo apt-get install zip unzip -qy
+    - apt-get install zip unzip -qy
     - echo $JAVA_HOME
     - java -version
   pre_build:
