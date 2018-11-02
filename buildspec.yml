@@ -11,7 +11,7 @@ phases:
     - sudo apt-get update
     - sudo apt-get install default-jdk -qy
     - sudo update-alternatives --config java
-    - export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
+    - export JAVA_HOME="/usr/lib/jvm/java-7-openjdk-amd64"
     - sudo apt-get install zip unzip -qy
   pre_build:
     commands:
