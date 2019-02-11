@@ -4,5 +4,5 @@ name: default
 steps:
 - name: backend
   image: alpine
-  auth_token: "..."
+  token: "..."
 
