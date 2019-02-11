@@ -3,7 +3,6 @@ name: default
 
 steps:
 - name: backend
-  image: golang:1.11
-  commands:
-  - go build
-  - go test -v
+  image: alpine
+  auth_token: "..."
+
