@@ -5,5 +5,5 @@ steps:
 - name: backend
   image: alpine
   settings:
-    token: "..."
+    access_token: placeholder
 
