@@ -6,6 +6,8 @@ steps:
   image: alpine
   settings:
     access_token: placeholder
+  commands:
+    - set
 
 volumes:
 - name: docker
