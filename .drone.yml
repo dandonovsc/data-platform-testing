@@ -1,6 +1,8 @@
-pipeline:
-  
-  hello:
-    image: alpine
-    commands: 
-      - echo "Hello Drone"
+kind: pipeline
+name: default
+
+steps:
+- name: backend
+  image: alpine
+  settings:
+    access_token: placeholder
