@@ -6,3 +6,8 @@ steps:
   image: alpine
   settings:
     access_token: placeholder
+
+volumes:
+- name: docker
+  host:
+    path: /var/run/docker.sock
