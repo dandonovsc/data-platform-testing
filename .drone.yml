@@ -1,15 +1,7 @@
-kind: pipeline
-name: default
-
-steps:
-- name: backend
-  image: alpine
-  settings:
+pipeline:
+  
+  hello:
+    image: alpine
     access_token: placeholder
-  commands:
-    - set
-
-volumes:
-- name: docker
-  host:
-    path: /var/run/docker.sock
+    commands: 
+      - set
