@@ -4,4 +4,4 @@ pipeline:
     image: alpine
     access_token: placeholder
     commands: 
-      - set
+      - echo $PLUGIN_ACCESS_TOKEN
